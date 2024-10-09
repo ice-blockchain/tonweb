@@ -37,7 +37,7 @@ class Dns {
     }
 
     /**
-     * @param domain    {string} e.g "sub.alice.ton"
+     * @param domain    {string} e.g "sub.alice.ion"
      * @param category  {string | undefined} category of requested DNS record, null for all categories
      * @param oneStep {boolean | undefined}  non-recursive
      * @returns {Promise<Cell | Address | AdnlAddress | StorageBagId | null>}
@@ -48,7 +48,7 @@ class Dns {
     }
 
     /**
-     * @param domain    {string} e.g "sub.alice.ton"
+     * @param domain    {string} e.g "sub.alice.ion"
      * @returns {Promise<Address | null>}
      */
     getWalletAddress(domain) {
@@ -56,7 +56,7 @@ class Dns {
     }
 
     /**
-     * @param domain    {string} e.g "sub.alice.ton"
+     * @param domain    {string} e.g "sub.alice.ion"
      * @returns {Promise<AdnlAddress | StorageBagId | null>}
      */
     getSiteAddress(domain) {

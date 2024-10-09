@@ -7,14 +7,14 @@ module.exports = {
         minimize: true,
     },
     output: {
-        filename: 'tonweb.js',
+        filename: 'ionweb.js',
         path: path.resolve(__dirname, 'dist'),
         library: {
             type: 'umd',
             name: {
-                root: 'TonWeb',
-                amd: 'tonweb',
-                commonjs: 'tonweb',
+                root: 'IonWeb',
+                amd: 'ionweb',
+                commonjs: 'ionweb',
             },
         },
     },

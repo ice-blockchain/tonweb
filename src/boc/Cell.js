@@ -347,7 +347,7 @@ async function treeWalk(cell, topologicalOrderArray, indexHashmap, parentHash = 
 
 
 function parseBocHeader(serializedBoc) {
-    // snake_case is used to match TON docs
+    // snake_case is used to match ION docs
     if (serializedBoc.length < 4 + 1)
         throw "Not enough bytes for magic prefix";
     const inputData = serializedBoc; // Save copy for crc32

@@ -25,17 +25,17 @@ const Address = require("./Address").default;
 const AdnlAddress = require("./AdnlAddress").default;
 const StorageBagId = require("./StorageBagId").default;
 
-// ton://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG
-// ton://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000
-// ton://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000&text=data
-// ton://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000&text=foo%3A%2F%2Fbar%2C%2Fbaz%3Famount%3D1%26text%3D%D1%80%D1%83
+// ion://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG
+// ion://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000
+// ion://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000&text=data
+// ion://transfer/EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG?amount=1000000000&text=foo%3A%2F%2Fbar%2C%2Fbaz%3Famount%3D1%26text%3D%D1%80%D1%83
 /**
  * @param url {string}
  * @return {{address: string, amount?: string, text?: string}}
  * @throws if invalid url
  */
 function parseTransferUrl(url) {
-    const PREFIX = 'ton://transfer/';
+    const PREFIX = 'ion://transfer/';
 
     if (!url.startsWith(PREFIX)) {
         throw new Error('must starts with ' + PREFIX);
@@ -92,7 +92,7 @@ function parseTransferUrl(url) {
  * @return {string}
  */
 function formatTransferUrl(address, amount, text) {
-    let url = 'ton://transfer/' + address;
+    let url = 'ion://transfer/' + address;
 
     const params = [];
 

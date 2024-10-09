@@ -70,7 +70,7 @@ class DnsCollection extends Contract {
     }
 
     /**
-     * @param domain    {string} e.g "sub.alice.ton"
+     * @param domain    {string} e.g "sub.alice.ion"
      * @param category?  {string} category of requested DNS record, null for all categories
      * @param oneStep? {boolean} non-recursive
      * @returns {Promise<Cell | Address | AdnlAddress | StorageBagId | null>}

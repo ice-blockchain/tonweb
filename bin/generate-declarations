@@ -19,7 +19,7 @@ echo "Switching branch to \"${SRC_BRANCH}\"…"
 git checkout -f "${SRC_BRANCH}"
 
 echo "Generating the declarations…"
-TMP_DIR="$(mktemp -d /tmp/tonweb-types.XXXXXXXXXX)"
+TMP_DIR="$(mktemp -d /tmp/ionweb-types.XXXXXXXXXX)"
 rm -rf "${TYPES_PATH}"
 npm run build:types
 cp -R "${TYPES_PATH}/." "${TMP_DIR}/"

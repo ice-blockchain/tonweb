@@ -1,7 +1,7 @@
 {
-  "name": "tonweb",
+  "name": "ionweb",
   "version": "0.0.66",
-  "description": "TonWeb - JavaScript API for TON blockchain",
+  "description": "IonWeb - JavaScript API for ION blockchain",
   "main": "src/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "npx webpack --mode=none"
   },
   "keywords": [
-    "TON",
+    "ION",
     "Blockchain",
     "API"
   ],
@@ -23,10 +23,10 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/toncenter/tonweb/issues"
+    "url": "https://github.com/ice-blockchain/ionweb/issues"
   },
-  "homepage": "https://github.com/toncenter/tonweb#readme",
-  "repository": "https://github.com/toncenter/tonweb",
+  "homepage": "https://github.com/ice-blockchain/ionweb#readme",
+  "repository": "https://github.com/ice-blockchain/ionweb",
   "dependencies": {
     "@ledgerhq/hw-transport-web-ble": "5.48.0",
     "@ledgerhq/hw-transport-webhid": "5.48.0",

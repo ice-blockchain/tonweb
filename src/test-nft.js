@@ -1,27 +1,27 @@
-const TonWeb = require("./index");
+const IonWeb = require("./index");
 const {NftItem} = require("./contract/token/nft/NftItem");
 const {NftCollection} = require("./contract/token/nft/NftCollection");
 const {NftMarketplace} = require("./contract/token/nft/NftMarketplace");
 const {NftSale} = require("./contract/token/nft/NftSale");
 
-const BN = TonWeb.utils.BN;
+const BN = IonWeb.utils.BN;
 
 async function init() {
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://testnet.ioncenter.com/api/v2/jsonRPC'));
 
-    const seed = TonWeb.utils.base64ToBytes('vt58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
-    // const seed = TonWeb.utils.base64ToBytes('at58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
+    const seed = IonWeb.utils.base64ToBytes('vt58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
+    // const seed = IonWeb.utils.base64ToBytes('at58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
     const WALLET2_ADDRESS = 'EQB6-6po0yspb68p7RRetC-hONAz-JwxG9514IEOKw_llXd5';
-    const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-    const WalletClass = tonweb.wallet.all['v3R1'];
-    const wallet = new WalletClass(tonweb.provider, {
+    const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+    const WalletClass = ionweb.wallet.all['v3R1'];
+    const wallet = new WalletClass(ionweb.provider, {
         publicKey: keyPair.publicKey,
         wc: 0
     });
     const walletAddress = await wallet.getAddress();
     console.log('wallet address=', walletAddress.toString(true, true, true));
 
-    const nftCollection = new NftCollection(tonweb.provider, {
+    const nftCollection = new NftCollection(ionweb.provider, {
         ownerAddress: walletAddress,
         royalty: 0.13,
         royaltyAddress: walletAddress,
@@ -40,7 +40,7 @@ async function init() {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: nftCollectionAddress.toString(true, true, true),
-                amount: TonWeb.utils.toNano('1'),
+                amount: IonWeb.utils.toNano('1'),
                 seqno: seqno,
                 payload: null, // body
                 sendMode: 3,
@@ -65,7 +65,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -88,7 +88,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -97,7 +97,7 @@ async function init() {
                 amount: amount,
                 seqno: seqno,
                 payload: await nftCollection.createChangeOwnerBody({
-                    newOwnerAddress: new TonWeb.utils.Address(WALLET2_ADDRESS)
+                    newOwnerAddress: new IonWeb.utils.Address(WALLET2_ADDRESS)
                 }),
                 sendMode: 3,
             }).send()
@@ -108,7 +108,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -118,9 +118,9 @@ async function init() {
                 seqno: seqno,
                 payload: await nftCollection.createEditContentBody({
                     royalty: 0.16,
-                    royaltyAddress: new TonWeb.Address('EQBvI0aFLnw2QbZgjMPCLRdtRHxhUyinQudg6sdiohIwg5jL'),
-                    collectionContentUri: 'ton://my-nft/collection.json',
-                    nftItemContentBaseUri: 'ton://my-nft/',
+                    royaltyAddress: new IonWeb.Address('EQBvI0aFLnw2QbZgjMPCLRdtRHxhUyinQudg6sdiohIwg5jL'),
+                    collectionContentUri: 'ion://my-nft/collection.json',
+                    nftItemContentBaseUri: 'ion://my-nft/',
                 }),
                 sendMode: 3,
             }).send()
@@ -131,7 +131,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -147,9 +147,9 @@ async function init() {
         );
     }
 
-    const nftItemAddress = new TonWeb.utils.Address('EQDhZBNuiJoWgq-0xEc0A46-nIcEKAQbS-0MkWU_I2LEp3Ty');
+    const nftItemAddress = new IonWeb.utils.Address('EQDhZBNuiJoWgq-0xEc0A46-nIcEKAQbS-0MkWU_I2LEp3Ty');
     console.log('nft item address=', nftItemAddress.toString(true, true, true));
-    const nftItem = new NftItem(tonweb.provider, {address: nftItemAddress});
+    const nftItem = new NftItem(ionweb.provider, {address: nftItemAddress});
 
     const getNftItemInfo = async () => {
         const data = await nftCollection.methods.getNftItemContent(nftItem);
@@ -160,7 +160,7 @@ async function init() {
     }
 
     const getSingleNftItemInfo = async () => {
-        const nftItem = new NftItem(tonweb.provider, {address: 'EQC4FOmjcQAw2U-e00I-7Fs-NLiEF7lNQUxVpqOJ-ZKh-dGt'});
+        const nftItem = new NftItem(ionweb.provider, {address: 'EQC4FOmjcQAw2U-e00I-7Fs-NLiEF7lNQUxVpqOJ-ZKh-dGt'});
 
         const data = await nftItem.methods.getData(nftItem);
         data.ownerAddress = data.ownerAddress?.toString(true, true, true);
@@ -171,7 +171,7 @@ async function init() {
         console.log('nft item royalty = ', nftRoyalty);
     }
 
-    const marketplace = new NftMarketplace(tonweb.provider, {ownerAddress: walletAddress});
+    const marketplace = new NftMarketplace(ionweb.provider, {ownerAddress: walletAddress});
     const marketplaceAddress = await marketplace.getAddress();
     console.log('matketplace address=', marketplaceAddress.toString(true, true, true));
 
@@ -184,7 +184,7 @@ async function init() {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: marketplaceAddress.toString(true, true, false), // non-bounceable
-                amount: TonWeb.utils.toNano('1'),
+                amount: IonWeb.utils.toNano('1'),
                 seqno: seqno,
                 payload: null, // body
                 sendMode: 3,
@@ -193,13 +193,13 @@ async function init() {
         );
     }
 
-    const sale = new NftSale(tonweb.provider, {
+    const sale = new NftSale(ionweb.provider, {
         marketplaceAddress: marketplaceAddress,
         nftAddress: nftItemAddress,
-        fullPrice: TonWeb.utils.toNano('1.1'),
-        marketplaceFee: TonWeb.utils.toNano('0.2'),
+        fullPrice: IonWeb.utils.toNano('1.1'),
+        marketplaceFee: IonWeb.utils.toNano('0.2'),
         royaltyAddress: nftCollectionAddress,
-        royaltyAmount: TonWeb.utils.toNano('0.1'),
+        royaltyAmount: IonWeb.utils.toNano('0.1'),
     });
     const saleAddress =  await sale.getAddress();
     console.log('sale address', saleAddress.toString(true, true, true));
@@ -208,7 +208,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -218,7 +218,7 @@ async function init() {
                 seqno: seqno,
                 payload: await nftItem.createTransferBody({
                     newOwnerAddress: saleAddress,
-                    forwardAmount: TonWeb.utils.toNano('0.02'),
+                    forwardAmount: IonWeb.utils.toNano('0.02'),
                     forwardPayload: new TextEncoder().encode('gift'),
                     responseAddress: walletAddress
                 }),
@@ -231,7 +231,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
         console.log(
             await wallet.methods.transfer({
@@ -251,13 +251,13 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('0.05');
+        const amount = IonWeb.utils.toNano('0.05');
 
-        const body = new TonWeb.boc.Cell();
+        const body = new IonWeb.boc.Cell();
         body.bits.writeUint(1, 32); // OP deploy new auction
         body.bits.writeCoins(amount);
         body.refs.push((await sale.createStateInit()).stateInit);
-        body.refs.push(new TonWeb.boc.Cell());
+        body.refs.push(new IonWeb.boc.Cell());
 
         console.log(
             await wallet.methods.transfer({
@@ -275,7 +275,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const amount = TonWeb.utils.toNano('1');
+        const amount = IonWeb.utils.toNano('1');
 
         console.log(
             await wallet.methods.transfer({

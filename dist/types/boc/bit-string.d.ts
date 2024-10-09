@@ -113,11 +113,11 @@ export declare class BitString {
      */
     writeGrams(nanograms: (number | BN)): void;
     /**
-     * Writes the specified TON amount in nanotons to the
+     * Writes the specified ION amount in nanoions to the
      * bit-string, starting at the current index and advances
      * the current index cursor by the number of bits written.
      */
-    writeCoins(nanotons: (number | BN)): void;
+    writeCoins(nanoions: (number | BN)): void;
     /**
      * Writes the specified address to the bit-string,
      * starting at the current index and advances the

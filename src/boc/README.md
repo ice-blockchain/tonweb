@@ -1,6 +1,6 @@
-# tonweb-boc
+# ionweb-boc
 
-Part of [TonWeb](https://github.com/toncenter/tonweb).
+Part of [IonWeb](https://github.com/ice-blockchain/ionweb).
 
 Serialization of BOC (Bag of Cells)
 
@@ -78,18 +78,18 @@ Cell.fromBoc(boc: string | UInt8Array): Cell - decerialize boc bytearray to Cell
 
 ```js
 // Create some cells
-const c2 = new TonWeb.boc.Cell();
+const c2 = new IonWeb.boc.Cell();
 c2.bits.writeUint(42, 7);
 
-const c3 = new TonWeb.boc.Cell();
+const c3 = new IonWeb.boc.Cell();
 c3.bits.writeUint(73, 255);
 
-const c1 = new TonWeb.boc.Cell();
+const c1 = new IonWeb.boc.Cell();
 c1.bits.writeUint8(0);
 c1.refs.push(c2);
 c1.refs.push(c3); 
 
 // Check it deserialized correctly
-const deC1 = TonWeb.boc.Cell.fromBoc(await c1.toBoc());
+const deC1 = IonWeb.boc.Cell.fromBoc(await c1.toBoc());
 (await deC1.hash()).toString() === (await c1.hash()).toString();
 ```

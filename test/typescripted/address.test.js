@@ -1,6 +1,6 @@
 
-const TonWeb = require('../../src');
-const utils = TonWeb.utils;
+const IonWeb = require('../../src');
+const utils = IonWeb.utils;
 
 const testAddress = '0QAs9VlT6S776tq3unJcP5Ogsj-ELLunLXuOb1EKcOQi4-QO';
 

@@ -24,7 +24,7 @@ const categoryToBN = async (category) => {
  */
 const createSmartContractAddressRecord = (smartContractAddress) => {
     const cell = new Cell();
-    cell.bits.writeUint(0x9fd3, 16); // https://github.com/ton-blockchain/ton/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L827
+    cell.bits.writeUint(0x9fd3, 16); // https://github.com/ion-blockchain/ion/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L827
     cell.bits.writeAddress(smartContractAddress);
     cell.bits.writeUint(0, 8); // flags
     return cell;
@@ -36,7 +36,7 @@ const createSmartContractAddressRecord = (smartContractAddress) => {
  */
 const createAdnlAddressRecord = (adnlAddress) => {
     const cell = new Cell();
-    cell.bits.writeUint(0xad01, 16); // https://github.com/ton-blockchain/ton/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L821
+    cell.bits.writeUint(0xad01, 16); // https://github.com/ion-blockchain/ion/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L821
     cell.bits.writeBytes(adnlAddress.bytes);
     cell.bits.writeUint(0, 8); // flags
     return cell;
@@ -59,7 +59,7 @@ const createStorageBagIdRecord = (storageBagId) => {
  */
 const createNextResolverRecord = (smartContractAddress) => {
     const cell = new Cell();
-    cell.bits.writeUint(0xba93, 16); // https://github.com/ton-blockchain/ton/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L819
+    cell.bits.writeUint(0xba93, 16); // https://github.com/ion-blockchain/ion/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L819
     cell.bits.writeAddress(smartContractAddress);
     return cell;
 }
@@ -248,7 +248,7 @@ const domainToBytes = (domain) => {
 /**
  * @param provider  {HttpProvider}
  * @param rootDnsAddress {string} address of root DNS smart contract
- * @param domain    {string} e.g "sub.alice.ton"
+ * @param domain    {string} e.g "sub.alice.ion"
  * @param category  {string | undefined} category of requested DNS record
  * @param oneStep {boolean | undefined} non-recursive
  * @returns {Promise<Cell | Address | AdnlAddress | StorageBagId | null>}

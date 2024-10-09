@@ -14,7 +14,7 @@ const parseShardBlockNumber = x => {
 class BlockSubscription {
 
     /**
-     * @param provider  {TonWeb.HttpProvider}
+     * @param provider  {IonWeb.HttpProvider}
      * @param storage   persistent storage for storing block numbers that we have already processed.
      * @param onBlock {(blockHeader: BlockHeader) => Promise<void>} callback which is called for of each block.
      *                                                       callback may throw an error, in this case the block processing will be interrupted and block will not be saved in the storage as processed.

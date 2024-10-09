@@ -29,7 +29,7 @@ export interface EstimateFeeBody {
 export declare type StackElement = (['num', number] | ['cell', CellObject] | ['slice', SliceObject] | [string, any]);
 export declare type CellObject = any;
 export declare type SliceObject = any;
-export declare const defaultHost = "https://toncenter.com/api/v2/jsonRPC";
+export declare const defaultHost = "https://ioncenter.com/api/v2/jsonRPC";
 export declare class HttpProvider {
     host: string;
     options: HttpProviderOptions;
@@ -43,7 +43,7 @@ export declare class HttpProvider {
      * Use this method to get information about address:
      * balance, code, data, last_transaction_id.
      *
-     * {@link https://toncenter.com/api/v2/#/accounts/get_address_information_getAddressInformation_get}
+     * {@link https://ioncenter.com/api/v2/#/accounts/get_address_information_getAddressInformation_get}
      */
     getAddressInfo(address: string): Promise<any>;
     /**
@@ -53,7 +53,7 @@ export declare class HttpProvider {
      * recognizable contracts may grow. For wallets, we
      * recommend to use `getWalletInformation()`.
      *
-     * {@link https://toncenter.com/api/v2/#/accounts/get_extended_address_information_getExtendedAddressInformation_get}
+     * {@link https://ioncenter.com/api/v2/#/accounts/get_extended_address_information_getExtendedAddressInformation_get}
      */
     getExtendedAddressInfo(address: string): Promise<any>;
     /**
@@ -64,7 +64,7 @@ export declare class HttpProvider {
      * `getExtendedAddressInformation()`: simple wallet,
      * standard wallet and v3 wallet.
      *
-     * {@link https://toncenter.com/api/v2/#/accounts/get_wallet_information_getWalletInformation_get}
+     * {@link https://ioncenter.com/api/v2/#/accounts/get_wallet_information_getWalletInformation_get}
      */
     getWalletInfo(address: string): Promise<any>;
     /**
@@ -72,21 +72,21 @@ export declare class HttpProvider {
      *
      * Returns array of transaction objects.
      *
-     * {@link https://toncenter.com/api/v2/#/accounts/get_transactions_getTransactions_get}
+     * {@link https://ioncenter.com/api/v2/#/accounts/get_transactions_getTransactions_get}
      */
     getTransactions(address: string, limit?: number, lt?: number | string, hash?: string, to_lt?: number | string, archival?: any): Promise<any>;
     /**
      * Use this method to get balance (in nanograms)
      * of a given address.
      *
-     * {@link https://toncenter.com/api/v2/#/accounts/get_address_balance_getAddressBalance_get}
+     * {@link https://ioncenter.com/api/v2/#/accounts/get_address_balance_getAddressBalance_get}
      */
     getBalance(address: string): Promise<any>;
     /**
      * Use this method to send serialized boc file:
      * fully packed and serialized external message.
      *
-     * {@link https://toncenter.com/api/v2/#/send/send_boc_sendBoc_post}
+     * {@link https://ioncenter.com/api/v2/#/send/send_boc_sendBoc_post}
      */
     sendBoc(
     /**
@@ -96,7 +96,7 @@ export declare class HttpProvider {
     /**
      * Estimates fees required for query processing.
      *
-     * {@link https://toncenter.com/api/v2/#/send/estimate_fee_estimateFee_post}
+     * {@link https://ioncenter.com/api/v2/#/send/estimate_fee_estimateFee_post}
      */
     getEstimateFee(query: EstimateFeeBody): Promise<any>;
     /**
@@ -104,7 +104,7 @@ export declare class HttpProvider {
      *
      * @todo: rename to `runGetMethodRaw()`
      *
-     * {@link https://toncenter.com/api/v2/#/run%20method/run_get_method_runGetMethod_post}
+     * {@link https://ioncenter.com/api/v2/#/run%20method/run_get_method_runGetMethod_post}
      */
     call(
     /**
@@ -124,7 +124,7 @@ export declare class HttpProvider {
      *
      * @todo: rename to `runGetMethod()`
      *
-     * {@link https://toncenter.com/api/v2/#/run%20method/run_get_method_runGetMethod_post}
+     * {@link https://ioncenter.com/api/v2/#/run%20method/run_get_method_runGetMethod_post}
      */
     call2(
     /**
@@ -142,20 +142,20 @@ export declare class HttpProvider {
     /**
      * Returns ID's of last and init block of masterchain.
      *
-     * {@link https://toncenter.com/api/v2/#/blocks/get_masterchain_info_getMasterchainInfo_get}
+     * {@link https://ioncenter.com/api/v2/#/blocks/get_masterchain_info_getMasterchainInfo_get}
      */
     getMasterchainInfo(): Promise<any>;
     /**
      * Returns ID's of shardchain blocks included
      * in this masterchain block.
      *
-     * {@link https://toncenter.com/api/v2/#/blocks/shards_shards_get}
+     * {@link https://ioncenter.com/api/v2/#/blocks/shards_shards_get}
      */
     getBlockShards(masterchainBlockNumber: number): Promise<any>;
     /**
      * Returns transactions hashes included in this block.
      *
-     * {@link https://toncenter.com/api/v2/#/blocks/get_block_transactions_getBlockTransactions_get}
+     * {@link https://ioncenter.com/api/v2/#/blocks/get_block_transactions_getBlockTransactions_get}
      */
     getBlockTransactions(workchain: number, shardId: string, shardBlockNumber: number, limit?: number, afterLt?: number | string, addressHash?: string): Promise<any>;
     /**
@@ -166,7 +166,7 @@ export declare class HttpProvider {
     /**
      * Returns block header and his previous blocks ID's.
      *
-     * {@link https://toncenter.com/api/v2/#/blocks/get_block_header_getBlockHeader_get}
+     * {@link https://ioncenter.com/api/v2/#/blocks/get_block_header_getBlockHeader_get}
      */
     getBlockHeader(workchain: number, shardId: string, shardBlockNumber: number): Promise<any>;
     /**
@@ -176,7 +176,7 @@ export declare class HttpProvider {
     /**
      * Sends external message.
      *
-     * {@link https://toncenter.com/api/v2/#/send/send_query_cell_sendQuerySimple_post}
+     * {@link https://ioncenter.com/api/v2/#/send/send_query_cell_sendQuerySimple_post}
      *
      * @deprecated
      */

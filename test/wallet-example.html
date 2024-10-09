@@ -5,21 +5,21 @@
     <title>Wallet Example</title>
 </head>
 <body>
-<script src="../dist/tonweb.js"></script>
+<script src="../dist/ionweb.js"></script>
 <script>
     async function example() {
-        const nacl = TonWeb.utils.nacl; // use nacl library for key pairs
-        const tonweb = new TonWeb();
+        const nacl = IonWeb.utils.nacl; // use nacl library for key pairs
+        const ionweb = new IonWeb();
 
         const keyPair = nacl.sign.keyPair(); // create new random key pair
         let secretKey = keyPair.secretKey;
 
-        let wallet = tonweb.wallet.create({publicKey: keyPair.publicKey}); // create interface to wallet smart contract (wallet v3 by default)
+        let wallet = ionweb.wallet.create({publicKey: keyPair.publicKey}); // create interface to wallet smart contract (wallet v3 by default)
 
         // OR
 
-        wallet = tonweb.wallet.create({address: 'EQDjVXa_oltdBP64Nc__p397xLCvGm2IcZ1ba7anSW0NAkeP'}); // if your know only address at this moment
-        secretKey = TonWeb.utils.hexToBytes('cdd624b8c960fc419d207689dd4c3bcadca7a0df53b664f97ac06454efe90c4b1dc1391e4affae5fa96b194b97de179926d791107846d80dacf700a9db1e8f7c');
+        wallet = ionweb.wallet.create({address: 'EQDjVXa_oltdBP64Nc__p397xLCvGm2IcZ1ba7anSW0NAkeP'}); // if your know only address at this moment
+        secretKey = IonWeb.utils.hexToBytes('cdd624b8c960fc419d207689dd4c3bcadca7a0df53b664f97ac06454efe90c4b1dc1391e4affae5fa96b194b97de179926d791107846d80dacf700a9db1e8f7c');
 
         const address = await wallet.getAddress();
         console.log('address=', address.toString(true, true, true, false));
@@ -46,7 +46,7 @@
             {
                 secretKey: keyPair.secretKey,
                 toAddress: 'EQDjVXa_oltdBP64Nc__p397xLCvGm2IcZ1ba7anSW0NAkeP',
-                amount: TonWeb.utils.toNano(0.01), // 0.01 TON
+                amount: IonWeb.utils.toNano(0.01), // 0.01 ION
                 seqno: seqno,
                 payload: 'Hello',
                 sendMode: 3,

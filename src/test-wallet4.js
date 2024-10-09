@@ -1,22 +1,22 @@
-const TonWeb = require("./index");
+const IonWeb = require("./index");
 const {SubscriptionContract} = require("./contract/subscription");
 
 async function init() {
     const BENEFICIARY = 'EQA0i8-CdGnF_DhUHHf92R1ONH6sIA9vLZ_WLcCIhfBBXwtG';
 
-    // Create testnet tonweb
+    // Create testnet ionweb
 
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://testnet.ioncenter.com/api/v2/jsonRPC'));
 
     // Create v4 wallet
 
-    const seed = TonWeb.utils.hexToBytes('607cdaf518cd38050b536005bea2667d008d5dda1027f9549479f4a42ac315c4');
+    const seed = IonWeb.utils.hexToBytes('607cdaf518cd38050b536005bea2667d008d5dda1027f9549479f4a42ac315c4');
 
-    const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-    console.log('wallet public key =', TonWeb.utils.bytesToHex(keyPair.publicKey));
+    const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+    console.log('wallet public key =', IonWeb.utils.bytesToHex(keyPair.publicKey));
 
-    const WalletClass = tonweb.wallet.all['v4R2'];
-    const wallet = new WalletClass(tonweb.provider, {
+    const WalletClass = ionweb.wallet.all['v4R2'];
+    const wallet = new WalletClass(ionweb.provider, {
         publicKey: keyPair.publicKey,
         wc: 0
     });
@@ -40,7 +40,7 @@ async function init() {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: BENEFICIARY,
-                amount: TonWeb.utils.toNano('0.01'), // 0.01 TON
+                amount: IonWeb.utils.toNano('0.01'), // 0.01 ION
                 seqno: seqno || 0,
                 payload: 'Hello',
                 sendMode: 3,
@@ -50,11 +50,11 @@ async function init() {
 
     // Create subscription
 
-    const subscription = new SubscriptionContract(tonweb.provider, {
+    const subscription = new SubscriptionContract(ionweb.provider, {
         wc: 0,
         wallet: walletAddress,
-        beneficiary: new TonWeb.utils.Address(BENEFICIARY),
-        amount: TonWeb.utils.toNano('1'), // 1 ton
+        beneficiary: new IonWeb.utils.Address(BENEFICIARY),
+        amount: IonWeb.utils.toNano('1'), // 1 ion
         startAt: 123,
         period: 2 * 60, // 2 min,
         timeout: 30, // 30 sec
@@ -72,7 +72,7 @@ async function init() {
                 secretKey: keyPair.secretKey,
                 seqno: seqno,
                 pluginWc: 0,
-                amount: TonWeb.utils.toNano('1'), // 1 ton
+                amount: IonWeb.utils.toNano('1'), // 1 ion
                 stateInit: (await subscription.createStateInit()).stateInit,
                 body: subscription.createBody(),
             }).send()
@@ -90,7 +90,7 @@ async function init() {
                 secretKey: keyPair.secretKey,
                 seqno: seqno,
                 pluginAddress: PLUGIN_ADDRESS,
-                // amount: TonWeb.utils.toNano('0')
+                // amount: IonWeb.utils.toNano('0')
             }).send()
         );
     }
@@ -104,7 +104,7 @@ async function init() {
                 secretKey: keyPair.secretKey,
                 seqno: seqno,
                 pluginAddress: PLUGIN_ADDRESS,
-                // amount: TonWeb.utils.toNano('0')
+                // amount: IonWeb.utils.toNano('0')
             }).send()
         );
     }
@@ -150,11 +150,11 @@ async function init() {
     // self destruct by beneficiary
 
     const selfDestruct = async () => {
-        const seed = TonWeb.utils.hexToBytes('');
+        const seed = IonWeb.utils.hexToBytes('');
 
-        const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-        const WalletClass = tonweb.wallet.all['v3R1'];
-        const wallet = new WalletClass(tonweb.provider, {
+        const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+        const WalletClass = ionweb.wallet.all['v3R1'];
+        const wallet = new WalletClass(ionweb.provider, {
             publicKey: keyPair.publicKey,
             wc: 0
         });
@@ -162,7 +162,7 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const body = new TonWeb.boc.BitString(32 + 64);
+        const body = new IonWeb.boc.BitString(32 + 64);
         body.writeUint(0x64737472, 32); // op
         body.writeUint(124, 64); // query id
 
@@ -170,7 +170,7 @@ async function init() {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: PLUGIN_ADDRESS,
-                amount: TonWeb.utils.toNano('0.2'),
+                amount: IonWeb.utils.toNano('0.2'),
                 seqno: seqno || 0,
                 payload: body.array,
                 sendMode: 3,
@@ -179,11 +179,11 @@ async function init() {
     }
 
     const requestPayment = async () => {
-        const seed = TonWeb.utils.hexToBytes('');
+        const seed = IonWeb.utils.hexToBytes('');
 
-        const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-        const WalletClass = tonweb.wallet.all['v3R1'];
-        const wallet = new WalletClass(tonweb.provider, {
+        const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+        const WalletClass = ionweb.wallet.all['v3R1'];
+        const wallet = new WalletClass(ionweb.provider, {
             publicKey: keyPair.publicKey,
             wc: 0
         });
@@ -191,17 +191,17 @@ async function init() {
         const seqno = (await wallet.methods.seqno().call()) || 0;
         console.log({seqno})
 
-        const body = new TonWeb.boc.Cell();
+        const body = new IonWeb.boc.Cell();
         body.bits.writeUint(0x706c7567, 32); // op
         body.bits.writeUint(123, 64); // query id
-        body.bits.writeGrams(TonWeb.utils.toNano('2.22'));
+        body.bits.writeGrams(IonWeb.utils.toNano('2.22'));
         body.bits.writeUint(0, 1); //  dict empty
 
         console.log(
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: WALLET_ADDRESS,
-                amount: TonWeb.utils.toNano('0.016'),
+                amount: IonWeb.utils.toNano('0.016'),
                 seqno: seqno || 0,
                 payload: body,
                 sendMode: 3,

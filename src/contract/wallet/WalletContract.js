@@ -166,7 +166,7 @@ class WalletContract extends Contract {
     /**
      * @param secretKey {Uint8Array}  nacl.KeyPair.secretKey
      * @param address   {Address | string}
-     * @param amount    {BN | number} in nanotons
+     * @param amount    {BN | number} in nanoions
      * @param seqno {number}
      * @param payload?   {string | Uint8Array | Cell}
      * @param sendMode?  {number}

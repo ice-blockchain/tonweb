@@ -214,7 +214,7 @@ class BitString {
 
 
     /**
-     * @param amount  {number | BN} in nanotons
+     * @param amount  {number | BN} in nanoions
      */
     writeCoins(amount) {
         this.writeGrams(amount);

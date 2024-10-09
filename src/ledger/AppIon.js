@@ -2,15 +2,15 @@ const {Cell} = require("../boc");
 const {Address, BN, bytesToHex} = require("../utils");
 const {Contract} = require("../contract");
 
-class AppTon {
+class AppIon {
 
     /**
      * @param transport {Transport} @ledgerhq/hw-transport
-     * @param ton   {TonWeb}
+     * @param ion   {IonWeb}
      */
-    constructor(transport, ton) {
+    constructor(transport, ion) {
         this.transport = transport;
-        this.ton = ton;
+        this.ion = ion;
 
         this.ADDRESS_FORMAT_HEX = 0;
         this.ADDRESS_FORMAT_USER_FRIENDLY = 1;
@@ -117,7 +117,7 @@ class AppTon {
     }
 
     /**
-     * Sign a transfer coins message (same with TonWeb.WalletContract.createTransferMessage)
+     * Sign a transfer coins message (same with IonWeb.WalletContract.createTransferMessage)
      * if seqno === 0 it will be deploy wallet + transfer coins message
      * @param accountNumber {number}
      * @param wallet {WalletContract}  Sender wallet
@@ -182,10 +182,10 @@ class AppTon {
         });
 
         return Contract.createMethod(
-            this.ton.provider,
+            this.ion.provider,
             resultPromise
         );
     }
 }
 
-module.exports = AppTon;
+module.exports = AppIon;

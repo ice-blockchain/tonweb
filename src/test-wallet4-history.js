@@ -1,4 +1,4 @@
-const TonWeb = require("./index");
+const IonWeb = require("./index");
 const {SubscriptionContract} = require("./contract/subscription");
 
 const getRawBody = (msg) => {
@@ -10,9 +10,9 @@ const getRawBody = (msg) => {
 }
 
 async function init() {
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://ioncenter.com/api/v2/jsonRPC'));
 
-    const txs = await tonweb.getTransactions('EQAtPMPoGXJzm6zvqeRcK6IzgJa8RpISp0xpMPgOgj5ggPtQ');
+    const txs = await ionweb.getTransactions('EQAtPMPoGXJzm6zvqeRcK6IzgJa8RpISp0xpMPgOgj5ggPtQ');
 
     // console.log(txs)
 
@@ -20,7 +20,7 @@ async function init() {
         if (!tx.in_msg.source) { // external message
             const rawBody = getRawBody(tx.in_msg);
             if (rawBody) {
-                const cell = TonWeb.boc.Cell.oneFromBoc(TonWeb.utils.base64ToBytes(rawBody));
+                const cell = IonWeb.boc.Cell.oneFromBoc(IonWeb.utils.base64ToBytes(rawBody));
                 const body = cell.bits.array;
                 const offset = 512 / 8 + 32 / 8 + 32 / 8 + 32 / 8; // signature 512bit, walletId 32bit, valid_until 32bit, seqno 32bit
                 const op = body[offset];
@@ -44,9 +44,9 @@ async function init() {
             if (rawBody && tx.out_msgs.length > 0) {
                 const outMsg = tx.out_msgs[0];
                 const ourRawBody = getRawBody(outMsg);
-                const outCell = TonWeb.boc.Cell.oneFromBoc(TonWeb.utils.base64ToBytes(ourRawBody));
+                const outCell = IonWeb.boc.Cell.oneFromBoc(IonWeb.utils.base64ToBytes(ourRawBody));
                 const outBody = outCell.bits.array;
-                const op = TonWeb.utils.bytesToHex(outBody.slice(0, 4)); // in hex
+                const op = IonWeb.utils.bytesToHex(outBody.slice(0, 4)); // in hex
                 if (op === 'f06c7567') {
                     console.log('payment wallet -> subscription')
                 } else  {

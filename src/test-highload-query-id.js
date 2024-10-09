@@ -1,5 +1,5 @@
-const TonWeb = require("./index");
-const HighloadQueryId = TonWeb.HighloadWallets.HighloadQueryId;
+const IonWeb = require("./index");
+const HighloadQueryId = IonWeb.HighloadWallets.HighloadQueryId;
 
 if (HighloadQueryId.fromSeqno(0n).toSeqno() !== 0n) throw new Error();
 

@@ -173,7 +173,7 @@ class Contract {
 
     /**
      * @param address {Address | string}
-     * @param amount {BN} in nanotons
+     * @param amount {BN} in nanoions
      * @param payload   {string | Uint8Array | Cell}
      * @param stateInit? {Cell}
      * @return {Cell}

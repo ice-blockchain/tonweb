@@ -1,5 +1,5 @@
 "Asm.fif" include
-// automatically generated from `/home/main/Documents/ton/crypto/smartcont/stdlib.fc` `restricted.fc` 
+// automatically generated from `/home/main/Documents/ion/crypto/smartcont/stdlib.fc` `restricted.fc` 
 PROGRAM{
   DECLPROC is_whitelisted?
   DECLPROC check_message_destination
@@ -335,8 +335,8 @@ PROGRAM{
     unlock_grams CALLDICT	//  total_restricted_value _27 _28
     NIP	//  total_restricted_value total_locked_value
     BALANCE	//  total_restricted_value total_locked_value _14
-    FIRST	//  total_restricted_value total_locked_value ton_balance
-    -ROT	//  ton_balance total_restricted_value total_locked_value
+    FIRST	//  total_restricted_value total_locked_value ion_balance
+    -ROT	//  ion_balance total_restricted_value total_locked_value
   }>
   get_balances PROC:<{
     // 

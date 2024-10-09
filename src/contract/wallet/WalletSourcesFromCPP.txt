@@ -1,4 +1,4 @@
-https://github.com/newton-blockchain/ton/blob/master/crypto/smc-envelope/SmartContractCode.cpp
+https://github.com/newion-blockchain/ion/blob/master/crypto/smc-envelope/SmartContractCode.cpp
 
 
 

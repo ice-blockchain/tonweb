@@ -1,10 +1,10 @@
 
 const nacl = require('tweetnacl');
 
-const TonWeb = require('../../src');
+const IonWeb = require('../../src');
 const { TestHttpProvider } = require('./test-http-provider');
-const utils = TonWeb.utils;
-const Lockup = TonWeb.LockupWallets;
+const utils = IonWeb.utils;
+const Lockup = IonWeb.LockupWallets;
 
 const FakeTimers = require('@sinonjs/fake-timers');
 FakeTimers.install();
@@ -20,15 +20,15 @@ const keyPair = nacl.sign.keyPair.fromSeed(
 const testAddress = 'UQBhK88OC8wm21NbmS3ElxpJqybSQHZN8FdXWISVP8SWeiMn';
 
 const wallets = [
-    TonWeb.Wallets.all.simpleR1,
-    TonWeb.Wallets.all.simpleR2,
-    TonWeb.Wallets.all.simpleR3,
-    TonWeb.Wallets.all.v2R1,
-    TonWeb.Wallets.all.v2R2,
-    TonWeb.Wallets.all.v3R1,
-    TonWeb.Wallets.all.v3R2,
-    TonWeb.Wallets.all.v4R1,
-    TonWeb.Wallets.all.v4R2,
+    IonWeb.Wallets.all.simpleR1,
+    IonWeb.Wallets.all.simpleR2,
+    IonWeb.Wallets.all.simpleR3,
+    IonWeb.Wallets.all.v2R1,
+    IonWeb.Wallets.all.v2R2,
+    IonWeb.Wallets.all.v3R1,
+    IonWeb.Wallets.all.v3R2,
+    IonWeb.Wallets.all.v4R1,
+    IonWeb.Wallets.all.v4R2,
     Lockup.LockupWalletV1,
 ];
 
@@ -238,7 +238,7 @@ const wallets = [
 
         await (async () => {
 
-            const payload = new TonWeb.boc.Cell();
+            const payload = new IonWeb.boc.Cell();
 
             payload.bits.writeBit(true);
             payload.bits.writeBit(false);
@@ -247,7 +247,7 @@ const wallets = [
             payload.bits.writeString('MARCO');
 
             payload.bits.writeAddress(
-                new TonWeb.Address(testAddress)
+                new IonWeb.Address(testAddress)
             );
 
             const method = wallet.methods.transfer({

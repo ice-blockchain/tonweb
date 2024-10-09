@@ -121,7 +121,7 @@ class LockupWalletV1 extends WalletContract {
 
 
     /**
-     * @return {Promise<BN>} Amount of nanotoncoins that can be spent immediately.
+     * @return {Promise<BN>} Amount of nanoioncoins that can be spent immediately.
      */
     async getLiquidBalance() {
         const balances = await this.getBalances();
@@ -129,21 +129,21 @@ class LockupWalletV1 extends WalletContract {
     }
 
     /**
-     * @return {Promise<BN>} Amount of nanotoncoins that can be spent after the timelock OR to the whitelisted addresses.
+     * @return {Promise<BN>} Amount of nanoioncoins that can be spent after the timelock OR to the whitelisted addresses.
      */
     async getNominalRestrictedBalance() {
         return await this.getBalances()[1];
     }
 
     /**
-     * @return {Promise<BN>} Amount of nanotoncoins that can be spent after the timelock only (whitelisted addresses not used).
+     * @return {Promise<BN>} Amount of nanoioncoins that can be spent after the timelock only (whitelisted addresses not used).
      */
     async getNominalLockedBalance() {
         return await this.getBalances()[2];
     }
 
     /**
-     * @return {Promise<[BN,BN,BN]>} Total amount of nanotoncoins on the contract,
+     * @return {Promise<[BN,BN,BN]>} Total amount of nanoioncoins on the contract,
      * nominal restricted value
      * nominal locked value
      */

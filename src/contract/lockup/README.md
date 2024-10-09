@@ -49,7 +49,7 @@ If the funder wishes to provide coins with a timelock condition, they need to ve
 * Public key of the funder who is capable of adding locked and restricted coins.
 * Whitelisted addresses where restricted coins can be sent.
 
-In tonweb, the wallet is instantiated with the following JSON
+In ionweb, the wallet is instantiated with the following JSON
 
 ```
 {
@@ -79,7 +79,7 @@ The wallet must show three balances (sum of these three = total amount of coins 
 * restricted
 
 Get methods of the contract recalculate liquid balance according to the current time on the node.
-For the tonweb client that would be the time of the toncenter backend.
+For the ionweb client that would be the time of the ioncenter backend.
 
 #### Sending
 

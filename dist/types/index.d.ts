@@ -25,8 +25,8 @@ import { SubscriptionContract } from './contract/subscription-contract';
 export { PayExternalMessage, SubscriptionContractMethods, SubscriptionContractOptions, SubscriptionData, } from './contract/subscription-contract';
 import { LockupWalletV1 } from './contract/lockup/lockup-wallet-v1';
 export { LockupWalletV1Config, LockupWalletV1Methods, LockupWalletV1Options, } from './contract/lockup/lockup-wallet-v1';
-import { AppTon } from './ledger/app-ton';
-export { AppConfiguration, GetAddressResult, GetPublicKeyResult, SignResult, } from './ledger/app-ton';
+import { AppIon } from './ledger/app-ion';
+export { AppConfiguration, GetAddressResult, GetPublicKeyResult, SignResult, } from './ledger/app-ion';
 import { JettonWallet } from './contract/token/ft/jetton-wallet';
 import { JettonMinter } from './contract/token/ft/jetton-minter';
 export { JettonWalletMethods, JettonWalletOptions, } from './contract/token/ft/jetton-wallet';
@@ -39,7 +39,7 @@ import { NftMarketplace } from './contract/token/nft/nft-marketplace';
 export { NftMarketplaceMethods, NftMarketplaceOptions, } from './contract/token/nft/nft-marketplace';
 import { NftSale } from './contract/token/nft/nft-sale';
 export { CreateCancelBodyParams, NftSaleMethods, NftSaleOptions, NftSaleData, } from './contract/token/nft/nft-sale';
-export default class TonWeb {
+export default class IonWeb {
     provider: HttpProvider;
     static version: string;
     static utils: {
@@ -86,7 +86,7 @@ export default class TonWeb {
         TransportWebUSB: typeof TransportWebUSB;
         TransportWebHID: any;
         BluetoothTransport: any;
-        AppTon: typeof AppTon;
+        AppIon: typeof AppIon;
     };
     static token: {
         nft: {

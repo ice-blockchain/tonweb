@@ -14,7 +14,7 @@ export interface BlockSubscriptionOptions {
 export declare type BlockHandler = ((blockHeader: any, blockShards?: any) => (Promise<void> | void));
 export declare class BlockSubscription {
     /**
-     * TonWeb HTTP provider.
+     * IonWeb HTTP provider.
      */
     private readonly provider;
     /**
@@ -49,7 +49,7 @@ export declare class BlockSubscription {
     private shardsIntervalId?;
     constructor(
     /**
-     * TonWeb HTTP provider.
+     * IonWeb HTTP provider.
      */
     provider: HttpProvider, 
     /**

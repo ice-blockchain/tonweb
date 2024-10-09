@@ -38,7 +38,7 @@ class JettonMinter extends Contract {
         body.bits.writeUint(21, 32); // OP mint
         body.bits.writeUint(params.queryId || 0, 64); // query_id
         body.bits.writeAddress(params.destination);
-        body.bits.writeCoins(params.amount); // in Toncoins
+        body.bits.writeCoins(params.amount); // in Ioncoins
 
         const transferBody = new Cell(); // internal transfer
         transferBody.bits.writeUint(0x178d4519, 32); // internal_transfer op

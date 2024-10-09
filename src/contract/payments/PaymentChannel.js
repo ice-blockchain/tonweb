@@ -413,13 +413,13 @@ class PaymentChannel extends Contract {
 
             return {
                 /**
-                 * @param amount    {BN}    in Toncoins
+                 * @param amount    {BN}    in Ioncoins
                  */
                 send: (amount) => {
                     return createPromise(amount).then(x => x.send());
                 },
                 /**
-                 * @param amount    {BN}    in Toncoins
+                 * @param amount    {BN}    in Ioncoins
                  */
                 estimateFee: (amount) => {
                     return createPromise(amount).then(x => x.estimateFee());

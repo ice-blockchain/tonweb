@@ -1,5 +1,5 @@
 #!/usr/bin/fift -s
-"TonUtil.fif" include
+"IonUtil.fif" include
 "GetOpt.fif" include
 
 { show-options-help 1 halt } : usage

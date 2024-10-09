@@ -14,7 +14,7 @@ class HttpProvider {
      * @param options? {{apiKey: string}}
      */
     constructor(host, options) {
-        this.host = host || "https://toncenter.com/api/v2/jsonRPC";
+        this.host = host || "https://ioncenter.com/api/v2/jsonRPC";
         this.options = options || {};
     }
 
@@ -109,7 +109,7 @@ class HttpProvider {
     /**
      * @deprecated
      * Send external message
-     * @param query     object as described https://toncenter.com/api/test/v2/#sendQuerySimple
+     * @param query     object as described https://ioncenter.com/api/test/v2/#sendQuerySimple
      */
     async sendQuery(query) {
         return this.send("sendQuerySimple", query);
@@ -117,7 +117,7 @@ class HttpProvider {
 
 
     /**
-     * @param query     object as described https://toncenter.com/api/test/v2/#estimateFee
+     * @param query     object as described https://ioncenter.com/api/test/v2/#estimateFee
      * @return fees object
      */
     async getEstimateFee(query) {

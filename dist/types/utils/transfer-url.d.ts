@@ -4,12 +4,12 @@ export interface ParsedTransferUrl {
     text?: string;
 }
 /**
- * Parses the specified TON-transfer URL into its individual
+ * Parses the specified ION-transfer URL into its individual
  * parts, throws error if URL format is invalid.
  */
 export declare function parseTransferUrl(url: string): ParsedTransferUrl;
 /**
- * Formats TON transfer URL from the specified individual parts.
+ * Formats ION transfer URL from the specified individual parts.
  *
  * @todo: pass all the parts as a single argument of `ParsedTransferUrl` type
  */

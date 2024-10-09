@@ -1,6 +1,6 @@
-const TonWeb = require("./index");
-const BN = TonWeb.utils.BN;
-const Address = TonWeb.utils.Address;
+const IonWeb = require("./index");
+const BN = IonWeb.utils.BN;
+const Address = IonWeb.utils.Address;
 
 /**
  * Storage for storing block numbers that we have already processed.
@@ -131,7 +131,7 @@ class BlocksStorageImpl {
 }
 
 async function init() {
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://testnet.ioncenter.com/api/v2/jsonRPC'));
     const storage = new BlocksStorageImpl();
 
     /**
@@ -145,16 +145,16 @@ async function init() {
         if (msg.message !== 'ODY6s4A=\n') return false; // msg from subscription prefix
 
         const subscriptionAddress = msg.source; // subscription contract address
-        const amount = new BN(msg.value); // coins received by the publisher (in nanotons); subscription amount minus fee and withheld 0.0671 ton
+        const amount = new BN(msg.value); // coins received by the publisher (in nanoions); subscription amount minus fee and withheld 0.0671 ion
 
         // get subscription data
 
-        const subscription = new TonWeb.SubscriptionContract(tonweb.provider, {address: subscriptionAddress});
+        const subscription = new IonWeb.SubscriptionContract(ionweb.provider, {address: subscriptionAddress});
         const subscriptionData = await subscription.getSubscriptionData();
 
         // check subscription contract validity
 
-        const subscription2 = new TonWeb.SubscriptionContract(tonweb.provider, {
+        const subscription2 = new IonWeb.SubscriptionContract(ionweb.provider, {
             wc: 0,
             wallet: new Address(subscriptionData.wallet),
             beneficiary: new Address(subscriptionData.beneficiary),
@@ -177,7 +177,7 @@ async function init() {
             await storage.replaceSubscription(subscriptionAddress, subscriptionData);
         }
 
-        console.log(`Notify: publisher ${address} receive ${TonWeb.utils.fromNano(amount)} from ${isNew ? 'new' : ''} subscriber ${subscriptionData.wallet}  via ${subscriptionAddress} subscription contract; subscription ID = ${subscriptionData.subscriptionId}`);
+        console.log(`Notify: publisher ${address} receive ${IonWeb.utils.fromNano(amount)} from ${isNew ? 'new' : ''} subscriber ${subscriptionData.wallet}  via ${subscriptionAddress} subscription contract; subscription ID = ${subscriptionData.subscriptionId}`);
 
         return true;
     }
@@ -186,7 +186,7 @@ async function init() {
 
     const pollAddress = async (address) => {
         const LIMIT = 20;
-        const txs = await tonweb.provider.getTransactions(address, LIMIT);
+        const txs = await ionweb.provider.getTransactions(address, LIMIT);
         for (const tx of txs) {
             await processTransaction(address, tx);
         }
@@ -200,7 +200,7 @@ async function init() {
         const address = shortTx.account;
 
         if (await storage.isPublisher(address)) {
-            const txs = await tonweb.provider.getTransactions(address, 1, shortTx.lt, shortTx.hash);
+            const txs = await ionweb.provider.getTransactions(address, 1, shortTx.lt, shortTx.hash);
             const tx = txs[0];
             if (tx) {
                 await processTransaction(address, tx);
@@ -210,7 +210,7 @@ async function init() {
         }
     }
 
-    const blockSubscribe = new TonWeb.BlockSubscribe(tonweb.provider, storage, onTransaction);
+    const blockSubscribe = new IonWeb.BlockSubscribe(ionweb.provider, storage, onTransaction);
     await blockSubscribe.start();
 
     // payments interval
@@ -223,7 +223,7 @@ async function init() {
         try {
             const subscriptions = await storage.getSubscriptionsReadyForPayment();
             for (const s of subscriptions) {
-                const subscription = new TonWeb.SubscriptionContract(tonweb.provider, {address: s.address});
+                const subscription = new IonWeb.SubscriptionContract(ionweb.provider, {address: s.address});
                 const subscriptionData = await subscription.getSubscriptionData();
                 storage.replaceSubscription(s.address, subscriptionData);
 

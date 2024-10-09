@@ -1,26 +1,26 @@
-const TonWeb = require("./index");
+const IonWeb = require("./index");
 const {Cell} = require("./boc");
 const {BN} = require("./utils");
-const {JettonMinter, JettonWallet} = TonWeb.token.jetton;
+const {JettonMinter, JettonWallet} = IonWeb.token.jetton;
 
 const init = async () => {
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC'));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://testnet.ioncenter.com/api/v2/jsonRPC'));
 
-    const seed = TonWeb.utils.base64ToBytes('vt58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
-    const seed2 = TonWeb.utils.base64ToBytes('at58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
+    const seed = IonWeb.utils.base64ToBytes('vt58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
+    const seed2 = IonWeb.utils.base64ToBytes('at58J2v6FaSuXFGcyGtqT5elpVxcZ+I1zgu/GUfA5uY=');
     const WALLET2_ADDRESS = 'EQB6-6po0yspb68p7RRetC-hONAz-JwxG9514IEOKw_llXd5';
-    const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-    const WalletClass = tonweb.wallet.all['v3R1'];
-    const wallet = new WalletClass(tonweb.provider, {
+    const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+    const WalletClass = ionweb.wallet.all['v3R1'];
+    const wallet = new WalletClass(ionweb.provider, {
         publicKey: keyPair.publicKey,
         wc: 0
     });
     const walletAddress = await wallet.getAddress();
     console.log('wallet address=', walletAddress.toString(true, true, true));
 
-    const minter = new JettonMinter(tonweb.provider, {
+    const minter = new JettonMinter(ionweb.provider, {
         adminAddress: walletAddress,
-        jettonContentUri: 'https://ton.org/jetton.json',
+        jettonContentUri: 'https://ion.org/jetton.json',
         jettonWalletCodeHex: JettonWallet.codeHex
     });
     const minterAddress = await minter.getAddress();
@@ -34,7 +34,7 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: minterAddress.toString(true, true, true),
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: null, // body
                 sendMode: 3,
@@ -61,12 +61,12 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: minterAddress.toString(true, true, true),
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: await minter.createMintBody({
-                    jettonAmount: TonWeb.utils.toNano('100500'),
+                    jettonAmount: IonWeb.utils.toNano('100500'),
                     destination: walletAddress,
-                    amount: TonWeb.utils.toNano('0.04')
+                    amount: IonWeb.utils.toNano('0.04')
                 }),
                 sendMode: 3,
             }).send()
@@ -81,7 +81,7 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: minterAddress.toString(true, true, true),
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: await minter.createEditContentBody({
                     jettonContentUri: 'http://localhost/nft-marketplace/my_collection.123',
@@ -99,10 +99,10 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: minterAddress.toString(true, true, true),
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: await minter.createChangeAdminBody({
-                    newAdminAddress: new TonWeb.Address(WALLET2_ADDRESS)
+                    newAdminAddress: new IonWeb.Address(WALLET2_ADDRESS)
                 }),
                 sendMode: 3,
             }).send()
@@ -113,7 +113,7 @@ const init = async () => {
     // const JETTON_WALLET_ADDRESS = 'EQAG6NvUCTxgQfcuUJVypQxN4rCm6krVH6T-mngXhSQwY0Ae';
     console.log('jettonWalletAddress=', JETTON_WALLET_ADDRESS);
 
-    const jettonWallet = new JettonWallet(tonweb.provider, {
+    const jettonWallet = new JettonWallet(ionweb.provider, {
         address: JETTON_WALLET_ADDRESS
     });
 
@@ -134,12 +134,12 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: JETTON_WALLET_ADDRESS,
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: await jettonWallet.createTransferBody({
-                    jettonAmount: TonWeb.utils.toNano('500'),
-                    toAddress: new TonWeb.utils.Address(WALLET2_ADDRESS),
-                    forwardAmount: TonWeb.utils.toNano('0.01'),
+                    jettonAmount: IonWeb.utils.toNano('500'),
+                    toAddress: new IonWeb.utils.Address(WALLET2_ADDRESS),
+                    forwardAmount: IonWeb.utils.toNano('0.01'),
                     forwardPayload: comment,
                     responseAddress: walletAddress
                 }),
@@ -159,10 +159,10 @@ const init = async () => {
             await wallet.methods.transfer({
                 secretKey: keyPair.secretKey,
                 toAddress: JETTON_WALLET_ADDRESS,
-                amount: TonWeb.utils.toNano('0.05'),
+                amount: IonWeb.utils.toNano('0.05'),
                 seqno: seqno,
                 payload: await jettonWallet.createBurnBody({
-                    jettonAmount: TonWeb.utils.toNano('400'),
+                    jettonAmount: IonWeb.utils.toNano('400'),
                     responseAddress: walletAddress
                 }),
                 sendMode: 3,

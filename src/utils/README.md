@@ -1,12 +1,12 @@
-# tonweb-utils
+# ionweb-utils
 
-Part of [TonWeb](https://github.com/toncenter/tonweb).
+Part of [IonWeb](https://github.com/ice-blockchain/ionweb).
 
-This contains useful utility functions for Dapp developers: work with TON Addresses, coin values, byte arrays, hex, hash functions.
+This contains useful utility functions for Dapp developers: work with ION Addresses, coin values, byte arrays, hex, hash functions.
 
 ## Address Class
 ```js
-const Address = TonWeb.utils.Address;
+const Address = IonWeb.utils.Address;
 
 const address = new Address(anyForm: string | Address);
 
@@ -26,7 +26,7 @@ address.toString(isUserFriendly?: boolean, isUrlSafe?: boolean, isBounceable?: b
 ```
 ## Functions
 
-TonWeb.utils.
+IonWeb.utils.
 
 * BN - "bn.js" library 
 

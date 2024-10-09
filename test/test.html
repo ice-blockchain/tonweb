@@ -5,14 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<script src="../dist/tonweb.js"></script>
+<script src="../dist/ionweb.js"></script>
 <script>
     async function testWalletV3() {
-        const tonweb = new TonWeb();
-        const Address = TonWeb.Address;
+        const ionweb = new IonWeb();
+        const Address = IonWeb.Address;
 
-        const cell = new TonWeb.boc.Cell();
-        const bitString = new TonWeb.boc.BitString(1023);
+        const cell = new IonWeb.boc.Cell();
+        const bitString = new IonWeb.boc.BitString(1023);
 
         console.assert(new Address('0QAs9VlT6S776tq3unJcP5Ogsj-ELLunLXuOb1EKcOQi4-QO').toString() === '0QAs9VlT6S776tq3unJcP5Ogsj-ELLunLXuOb1EKcOQi4-QO', 'non-bounce address');
         console.assert(new Address('kQAs9VlT6S776tq3unJcP5Ogsj-ELLunLXuOb1EKcOQi47nL').toString() === 'kQAs9VlT6S776tq3unJcP5Ogsj-ELLunLXuOb1EKcOQi47nL', 'bounce address');
@@ -31,15 +31,15 @@
         console.assert(new Address('0:2cf55953e92efbeadab7ba725c3f93a0b23f842cbba72d7b8e6f510a70e422e3').toString(false) === '0:2cf55953e92efbeadab7ba725c3f93a0b23f842cbba72d7b8e6f510a70e422e3', 'raw address 2');
 
         const a = 'EQDjVXa_oltdBP64Nc__p397xLCvGm2IcZ1ba7anSW0NAkeP';
-        const address = new TonWeb.Address(a)
-        console.log(await tonweb.getTransactions(address));
-        console.log(await tonweb.getBalance(address));
-        console.log(await tonweb.sendBoc(new Uint8Array(0)));
-        console.log(await tonweb.call(address, 'seqno'));
+        const address = new IonWeb.Address(a)
+        console.log(await ionweb.getTransactions(address));
+        console.log(await ionweb.getBalance(address));
+        console.log(await ionweb.sendBoc(new Uint8Array(0)));
+        console.log(await ionweb.call(address, 'seqno'));
 
-        console.log(await tonweb.provider.getAddressInfo(a));
-        console.log(await tonweb.provider.getExtendedAddressInfo(a));
-        console.log(await tonweb.provider.getWalletInfo(a));
+        console.log(await ionweb.provider.getAddressInfo(a));
+        console.log(await ionweb.provider.getExtendedAddressInfo(a));
+        console.log(await ionweb.provider.getWalletInfo(a));
     }
 
     testWalletV3();

@@ -1,18 +1,18 @@
-const TonWeb = require("./index");
-const {HighloadWalletContractV3, HighloadQueryId} = TonWeb.HighloadWallets;
-const {Address, toNano} = TonWeb.utils;
+const IonWeb = require("./index");
+const {HighloadWalletContractV3, HighloadQueryId} = IonWeb.HighloadWallets;
+const {Address, toNano} = IonWeb.utils;
 const init = async () => {
 
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC', {apiKey: ''}));
+    const ionweb = new IonWeb(new IonWeb.HttpProvider('https://testnet.ioncenter.com/api/v2/jsonRPC', {apiKey: ''}));
 
     // Create v4 wallet
 
-    const seed = TonWeb.utils.hexToBytes('607cdaf518cd38050b536005bea2667d008d5dda1027f9549479f4a42ac315c4');
+    const seed = IonWeb.utils.hexToBytes('607cdaf518cd38050b536005bea2667d008d5dda1027f9549479f4a42ac315c4');
 
-    const keyPair = TonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
-    console.log('wallet public key =', TonWeb.utils.bytesToHex(keyPair.publicKey));
+    const keyPair = IonWeb.utils.nacl.sign.keyPair.fromSeed(seed);
+    console.log('wallet public key =', IonWeb.utils.bytesToHex(keyPair.publicKey));
 
-    const highloadWallet = new HighloadWalletContractV3(tonweb.provider, {
+    const highloadWallet = new HighloadWalletContractV3(ionweb.provider, {
         publicKey: keyPair.publicKey,
         timeout: 60 * 60, // 1 hour
     });
@@ -32,7 +32,7 @@ const init = async () => {
         queryId: queryId,
         createdAt: createAt,
         toAddress: new Address('UQCdqXGvONLwOr3zCNX5FjapflorB6ZsOdcdfLrjsDLt3AF4'),
-        amount: toNano('0.01'), // 0.01 TON
+        amount: toNano('0.01'), // 0.01 ION
         payload: 'Hello',
         sendMode: 3,
         needDeploy: queryId.getQueryId() === 0n

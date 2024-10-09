@@ -4,7 +4,7 @@ import Transport from '@ledgerhq/hw-transport';
 import BN from 'bn.js';
 import { Method } from '../contract/contract';
 import { WalletContract } from '../contract/wallet/wallet-contract';
-import TonWeb, { AddressType } from '../index';
+import IonWeb, { AddressType } from '../index';
 import { Address } from '../utils/address';
 export interface AppConfiguration {
     version: string;
@@ -18,12 +18,12 @@ export interface GetAddressResult {
 export interface SignResult {
     signature: Buffer;
 }
-export declare class AppTon {
+export declare class AppIon {
     /**
      * @ledgerhq compatible transport.
      */
     readonly transport: Transport;
-    readonly ton: TonWeb;
+    readonly ion: IonWeb;
     readonly ADDRESS_FORMAT_HEX = 0;
     readonly ADDRESS_FORMAT_USER_FRIENDLY = 1;
     readonly ADDRESS_FORMAT_URL_SAFE = 2;
@@ -33,7 +33,7 @@ export declare class AppTon {
     /**
      * @ledgerhq compatible transport.
      */
-    transport: Transport, ton: TonWeb);
+    transport: Transport, ion: IonWeb);
     /***
      * Returns application configuration that includes version.
      */
@@ -58,7 +58,7 @@ export declare class AppTon {
     sign(accountNumber: number, buffer: Buffer): Promise<SignResult>;
     /**
      * Signs the transfer coins message
-     * (same with TonWeb.WalletContract.createTransferMessage).
+     * (same with IonWeb.WalletContract.createTransferMessage).
      * If `seqno` is zero, then it will be "deploy wallet + transfer coins" message.
      * `addressFormat` is a sum of `ADDRESS_FORMAT_*` instance property constants.
      */

@@ -1,14 +1,14 @@
-# tonweb-contract
+# ionweb-contract
 
-Part of [TonWeb](https://github.com/toncenter/tonweb).
+Part of [IonWeb](https://github.com/ice-blockchain/ionweb).
 
 The idea is to interact with smart contracts as if they were JavaScript objects.
 
-tonweb.Contract is abstract class for all smart contract objects in TonWeb.
+ionweb.Contract is abstract class for all smart contract objects in IonWeb.
 
 ## Implement your custom contract
 
-ABI and json interface of contract not yet invented in TON, so you need extend tonweb.Contract and compose messages to contract yourself.
+ABI and json interface of contract not yet invented in ION, so you need extend ionweb.Contract and compose messages to contract yourself.
 
 ```js
 export class MyContract extends Contract {
@@ -27,7 +27,7 @@ export class MyContract extends Contract {
 
 Deployment functionality is implemented in the Contract class, you only need to override createDataCell and createSigningMessage methods.
  
-tonweb.Contract contains several static functions to help compose messages:
+ionweb.Contract contains several static functions to help compose messages:
 
 * Contract.createStateInit
 
@@ -37,7 +37,7 @@ tonweb.Contract contains several static functions to help compose messages:
 
 * Contract.createCommonMsgInfo
 
-You can see an example of extending Contract class and using these functions in the code [tonweb-contract-wallet](https://github.com/toncenter/tonweb/blob/master/src/contract/wallet)
+You can see an example of extending Contract class and using these functions in the code [ionweb-contract-wallet](https://github.com/ice-blockchain/ionweb/blob/master/src/contract/wallet)
 
 ## Common Interface 
 

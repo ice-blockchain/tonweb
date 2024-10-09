@@ -1,7 +1,7 @@
 const utils = require("./utils");
 const Address = utils.Address;
 const boc = require("./boc");
-const AppTon = require("./ledger/AppTon");
+const AppIon = require("./ledger/AppIon");
 const HttpProvider = require("./providers").default;
 const {Contract} = require("./contract");
 const Wallets = require("./contract/wallet").default;
@@ -18,7 +18,7 @@ const BluetoothTransport = require("@ledgerhq/hw-transport-web-ble").default;
 const {Dns, DnsCollection, DnsItem} = require("./contract/dns").default;
 const version = '0.0.66';
 
-class TonWeb {
+class IonWeb {
     constructor(provider) {
         this.version = version;
         this.utils = utils;
@@ -75,33 +75,33 @@ class TonWeb {
     }
 }
 
-TonWeb.version = version;
-TonWeb.utils = utils;
-TonWeb.Address = Address;
-TonWeb.boc = boc;
-TonWeb.HttpProvider = HttpProvider;
-TonWeb.Contract = Contract;
-TonWeb.Wallets = Wallets;
-TonWeb.LockupWallets = LockupWallets;
-TonWeb.SubscriptionContract = SubscriptionContract;
-TonWeb.BlockSubscription = BlockSubscription;
-TonWeb.InMemoryBlockStorage = InMemoryBlockStorage;
-TonWeb.ledger = {
+IonWeb.version = version;
+IonWeb.utils = utils;
+IonWeb.Address = Address;
+IonWeb.boc = boc;
+IonWeb.HttpProvider = HttpProvider;
+IonWeb.Contract = Contract;
+IonWeb.Wallets = Wallets;
+IonWeb.LockupWallets = LockupWallets;
+IonWeb.SubscriptionContract = SubscriptionContract;
+IonWeb.BlockSubscription = BlockSubscription;
+IonWeb.InMemoryBlockStorage = InMemoryBlockStorage;
+IonWeb.ledger = {
     TransportWebUSB,
     TransportWebHID,
     BluetoothTransport,
-    AppTon,
+    AppIon,
 };
-TonWeb.token = {
+IonWeb.token = {
     nft: NFT,
     ft: JETTON,
     jetton: JETTON,
 }
-TonWeb.HighloadWallets = HighloadWallets;
-TonWeb.dns = Dns;
-TonWeb.dns.DnsCollection = DnsCollection;
-TonWeb.dns.DnsItem = DnsItem;
-TonWeb.payments = Payments;
-TonWeb.payments.PaymentChannel = PaymentChannel;
+IonWeb.HighloadWallets = HighloadWallets;
+IonWeb.dns = Dns;
+IonWeb.dns.DnsCollection = DnsCollection;
+IonWeb.dns.DnsItem = DnsItem;
+IonWeb.payments = Payments;
+IonWeb.payments.PaymentChannel = PaymentChannel;
 
-module.exports = TonWeb;
+module.exports = IonWeb;
